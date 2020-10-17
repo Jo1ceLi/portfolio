@@ -1,3 +1,6 @@
 <h1>app-component</h1>
 <p>{{title}}</p>
-<app-edit></app-edit>
+<app-edit (stockAdd)="onStockAdded($event)"></app-edit>
+<app-order
+*ngFor="let stockdatael of stockdatas"
+[stockdata] = "stockdatael"></app-order>

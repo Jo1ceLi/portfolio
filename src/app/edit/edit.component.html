@@ -2,10 +2,17 @@
 
 <div>
   <div>
-    <label>
-      Name:
-      <input type="text" [(ngModel)]="stock">
-    </label>
-    <p>{{stock}}</p>
+
+      stock:<input  type="text" [(ngModel)]="stockname">
+      amount:<input  type="text" [(ngModel)]="amount">
+      price:<input  type="text" [(ngModel)]="price">
+      type:<select #selectEle >
+        <option value=true>Buy</option>
+        <option value=false>Sell</option>
+      </select>
+      <input type="submit" value="Submit"
+      (click)="setType(selectEle.value)"
+      (click)="submitStock()"
+      >
   </div>
 </div>
