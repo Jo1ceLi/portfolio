@@ -1,5 +1,6 @@
 import { StockData } from './../stockdata';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -10,18 +11,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class OrderComponent implements OnInit {
 
   @Input() stockdata: StockData;
-  // stockdatas: StockData[] = [
-  //   {stock: 'AAPL', amount: 1, price: 120, type: true, tradeDate: '2020-10-15'},
-  //   {stock: 'TSLA', amount: 2, price: 370, type: true, tradeDate: '2020-10-15'},
-  //   {stock: 'MSFT', amount: 3, price: 220, type: true, tradeDate: '2020-10-15'},
-  // ];
-  show: boolean;
 
+  form: FormGroup;
 
-
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      stock: 'AAPL',
+      amount: 1,
+      price: 200
+    });
 
   }
 
