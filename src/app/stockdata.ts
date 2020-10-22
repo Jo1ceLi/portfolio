@@ -1,8 +1,8 @@
-export interface StockData{
+export class StockData{
   stock: string;
   amount: number ;
-  price: number ;
-  type: boolean ;
+  price: number;
+  type: boolean;
   tradeDate: string ;
 }
 
