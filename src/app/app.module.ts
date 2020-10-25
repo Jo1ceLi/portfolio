@@ -11,13 +11,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditComponent } from './edit/edit.component';
 import { OrderComponent } from './order/order.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ErrorComponent } from './error/error.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     EditComponent,
-    OrderComponent
+    OrderComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
