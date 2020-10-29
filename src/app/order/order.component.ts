@@ -1,5 +1,5 @@
 import { StockData } from './../stockdata';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 
@@ -8,13 +8,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnChanges {
 
   @Input() stockdata: StockData;
 
   form: FormGroup;
 
   constructor(private fb: FormBuilder) { }
+
+
+  stockdatas = [];
+
+  addStockData(data: StockData): void {
+    this.stockdatas.push(data);
+    console.log(this.stockdatas);
+  }
+
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -25,5 +34,8 @@ export class OrderComponent implements OnInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.stockdatas);
+  }
 
 }

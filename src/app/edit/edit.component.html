@@ -18,8 +18,8 @@
   </label>
 
   <select name='PORS' formControlName='type'>
-    <option value="true">Buy</option>
-    <option value="false">Sell</option>
+    <option [ngValue]='true'>Buy</option>
+    <option [ngValue]='false'>Sell</option>
   </select>
 
   <input type="submit" value="Submit">

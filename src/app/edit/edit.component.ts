@@ -11,8 +11,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EditComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
+  @Output() newStockDataEvent = new EventEmitter<any>();
 
-  @Output() stockAdd = new EventEmitter<StockData>();
 
   stockdata = this.fb.group({
     stock: 'AAPL',
@@ -24,28 +24,37 @@ export class EditComponent implements OnInit {
 
 
 
-  stockname: string;
-  amount: number;
-  price: number;
-  type: boolean;
+  // stockname: string;
+  // amount: number;
+  // price: number;
+  // type: boolean;
 
-  stockdd = new StockData();
+  stockdd: StockData = {
+    stock: 'a',
+    price: 1,
+    amount: 2,
+    type: true,
+    tradeDate: ''
+  };
+
 
   ngOnInit(): void {
 
 
   }
-  setType(option: boolean): void{
-    this.type = option;
-  }
+  // setType(option: boolean): void{
+  //   this.type = option;
+  // }
 
   onSubmit(): void {
-    this.stockdd.stock = this.stockdata.get('stock').value;
-    this.stockdd.price = this.stockdata.get('price').value;
-    this.stockdd.amount = this.stockdata.get('amount').value;
-    this.stockdd.type = this.stockdata.get('type').value;
-    this.stockdd.tradeDate = this.stockdata.get('tradeDate').value;
-
+    this.stockdd =  {
+                      stock: this.stockdata.get('stock').value,
+                      price: +this.stockdata.get('price').value,
+                      amount: +this.stockdata.get('amount').value,
+                      type: this.stockdata.get('type').value,
+                      tradeDate: this.stockdata.get('tradeDate').value
+                    };
+    this.newStockDataEvent.emit(this.stockdd);
   }
   // submitStock(): void{
   //   this.stockdd.stock = this.stockname;

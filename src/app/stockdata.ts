@@ -1,4 +1,4 @@
-export class StockData{
+export interface StockData{
   stock: string;
   amount: number ;
   price: number;
