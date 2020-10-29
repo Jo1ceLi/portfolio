@@ -22,9 +22,10 @@
     <option [ngValue]='false'>Sell</option>
   </select>
 
-  <input type="submit" value="Submit">
+  <input [disabled]='stockdata.invalid' type="submit" value="Submit">
 
   <pre>{{stockdata.value | json}}</pre>
+  <pre>{{stockdata.get('stock').errors | json }}</pre>
   <pre>{{stockdd | json}}</pre>
 </form>
 
