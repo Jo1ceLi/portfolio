@@ -1,20 +1,28 @@
 <p>edit works!</p>
-
 <form [formGroup]="stockdata" (ngSubmit)="onSubmit()">
 
   <label>
     Stock:
-    <input type="text" formControlName="stock">
+    <input type="text"
+    class="form-control"
+    [class.is-invalid] = "stockdata.get('stock').invalid"
+    formControlName="stock">
   </label>
 
   <label>
     Price:
-    <input type="text" formControlName="price">
+    <input type="text"
+    class="form-control"
+    [class.is-invalid] = "stockdata.get('price').invalid"
+    formControlName="price">
   </label>
 
   <label>
     Amount:
-    <input type="text" formControlName="amount">
+    <input type="text"
+    class="form-control"
+    [class.is-invalid] = "stockdata.get('amount').invalid"
+    formControlName="amount">
   </label>
 
   <select name='PORS' formControlName='type'>

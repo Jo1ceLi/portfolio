@@ -17,11 +17,9 @@
       <td>{{data.stock}}</td>
       <td>{{data.price}}</td>
       <td>{{data.amount}}</td>
-      <td>{{data.type | porS}}</td>
+      <td [ngStyle]="{'color': data.type===true ? 'green':'red'}">{{data.type | porS}}</td>
       <td>{{data.tradeDate}}</td>
-
     </tr>
-
   </tbody>
 </table>
 <app-edit (newStockDataEvent)="addStockData($event)"></app-edit>
