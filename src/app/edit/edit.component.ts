@@ -12,7 +12,7 @@ export class EditComponent implements OnInit {
 
   @Output() newStockDataEvent = new EventEmitter<any>();
   constructor(private fb: FormBuilder) { }
-
+  toggle: boolean;
   stockdd: StockData;
   stockdata = this.fb.group({
     stock: ['AAPL', Validators.required],
@@ -26,6 +26,17 @@ export class EditComponent implements OnInit {
 
 
   }
+
+  toggleBtn(tg: boolean): void{
+    if (tg){
+      this.toggle = false;
+
+    }else{
+      this.toggle = !this.toggle;
+    }
+    //console.log(this.toggle);
+  }
+
   onSubmit(): void {
     this.stockdd =  {
                       stock: this.stockdata.get('stock').value,

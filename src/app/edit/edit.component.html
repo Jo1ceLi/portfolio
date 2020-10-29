@@ -1,41 +1,38 @@
 <p>edit works!</p>
-<form [formGroup]="stockdata" (ngSubmit)="onSubmit()">
+<div>
+  <form [formGroup]="stockdata" (ngSubmit)="onSubmit()">
 
-  <label>
-    Stock:
-    <input type="text"
-    class="form-control"
-    [class.is-invalid] = "stockdata.get('stock').invalid"
-    formControlName="stock">
-  </label>
+    <label>
+      Stock:
+      <input type="text" class="form-control" [class.is-invalid]="stockdata.get('stock').invalid"
+        formControlName="stock">
+    </label>
 
-  <label>
-    Price:
-    <input type="text"
-    class="form-control"
-    [class.is-invalid] = "stockdata.get('price').invalid"
-    formControlName="price">
-  </label>
+    <label>
+      Price:
+      <input type="text" class="form-control" [class.is-invalid]="stockdata.get('price').invalid"
+        formControlName="price">
+    </label>
 
-  <label>
-    Amount:
-    <input type="text"
-    class="form-control"
-    [class.is-invalid] = "stockdata.get('amount').invalid"
-    formControlName="amount">
-  </label>
+    <label>
+      Amount:
+      <input type="text" class="form-control" [class.is-invalid]="stockdata.get('amount').invalid"
+        formControlName="amount">
+    </label>
 
-  <select name='PORS' formControlName='type'>
-    <option [ngValue]='true'>Buy</option>
-    <option [ngValue]='false'>Sell</option>
-  </select>
+    <select name='PORS' formControlName='type' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      class="btn btn-secondary">
+      <option class="dropdown-item" [ngValue]='true'>Buy</option>
+      <option class="dropdown-item" [ngValue]='false'>Sell</option>
+    </select>
 
-  <input [disabled]='stockdata.invalid' type="submit" value="Submit">
+    <input [disabled]='stockdata.invalid' type="submit" value="Submit">
+
+  </form>
+</div>
+<div>
 
   <pre>{{stockdata.value | json}}</pre>
   <pre>{{stockdata.get('stock').errors | json }}</pre>
   <pre>{{stockdd | json}}</pre>
-</form>
-
-
-
+</div>
