@@ -34,7 +34,7 @@ export class EditComponent implements OnInit {
     }else{
       this.toggle = !this.toggle;
     }
-    //console.log(this.toggle);
+    // console.log(this.toggle);
   }
 
   onSubmit(): void {

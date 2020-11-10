@@ -4,6 +4,7 @@ import { EditComponent } from './edit/edit.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { OrderComponent } from './order/order.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'order', component: OrderComponent },
   { path: 'edit', component: EditComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'sidebar', component: SidebarComponent },
   { path: '**', component: ErrorComponent  },
 
 

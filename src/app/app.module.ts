@@ -13,6 +13,8 @@ import { OrderComponent } from './order/order.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorComponent } from './error/error.component';
 import { PorSPipe } from './por-s.pipe';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { PorSPipe } from './por-s.pipe';
     EditComponent,
     OrderComponent,
     ErrorComponent,
-    PorSPipe
+    PorSPipe,
+    SidebarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
