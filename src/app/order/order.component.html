@@ -22,10 +22,10 @@
         <tbody>
           <tr *ngFor="let data of stockdatas; let i=index">
             <th scope="row">{{i}}</th>
-            <td>{{data.stock}}</td>
+            <td>{{data.symbol}}</td>
             <td>{{data.price}}</td>
             <td>{{data.amount}}</td>
-            <td [ngStyle]="{'color': data.type===true ? 'green':'red'}">{{data.type | porS}}</td>
+            <td [ngStyle]="{'color': data.amount > 0  ? 'green':'red'}">{{data.amount | porS}}</td>
             <td>{{data.tradeDate}}</td>
           </tr>
         </tbody>

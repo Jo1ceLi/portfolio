@@ -1,6 +1,7 @@
 import { StockData } from './../stockdata';
 import { Component, EventEmitter, OnChanges, OnInit, Output, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -11,13 +12,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class EditComponent implements OnInit {
 
   @Output() newStockDataEvent = new EventEmitter<any>();
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private http: HttpClient) { }
   toggle: boolean;
   stockdd: StockData;
   stockdata = this.fb.group({
-    stock: ['AAPL', Validators.required],
+    symbol: ['AAPL', Validators.required],
     price: [120, [Validators.required, Validators.pattern('^[0-9]*$')]],
-    amount: [456, [Validators.required, Validators.pattern('^[0-9]*$')]],
+    amount: [456, [Validators.required]],
     type: true,
     tradeDate: Date().toString().substring(4, 15)
   });
@@ -39,7 +40,7 @@ export class EditComponent implements OnInit {
 
   onSubmit(): void {
     this.stockdd =  {
-                      stock: this.stockdata.get('stock').value,
+                      symbol: this.stockdata.get('symbol').value,
                       price: +this.stockdata.get('price').value,
                       amount: +this.stockdata.get('amount').value,
                       type: this.stockdata.get('type').value,

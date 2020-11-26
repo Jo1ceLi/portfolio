@@ -4,8 +4,8 @@
 
       <label>
         Stock:
-        <input type="text" class="form-control" [class.is-invalid]="stockdata.get('stock').invalid"
-          formControlName="stock">
+        <input type="text" class="form-control" [class.is-invalid]="stockdata.get('symbol').invalid"
+          formControlName="symbol">
       </label>
 
       <label>
@@ -32,7 +32,7 @@
   </div>
   <div>
     <pre>{{stockdata.value | json}}</pre>
-    <pre>{{stockdata.get('stock').errors | json }}</pre>
+    <pre>{{stockdata.get('symbol').errors | json }}</pre>
     <pre>{{stockdd | json}}</pre>
   </div>
 

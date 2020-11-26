@@ -19,15 +19,15 @@ export class AppComponent {
 
   //@ViewChild(EditComponent) private editComponent: EditComponent;
 
-  onStockAdded(stock: StockData): void{
-    console.log(stock);
-    this.stockdatas.push({
-      stock: stock.stock,
-      amount: stock.amount,
-      price: stock.price,
-      type: stock.type,
-      tradeDate: stock.tradeDate
-    });
+  // onStockAdded(stock: StockData): void{
+  //   console.log(stock);
+  //   this.stockdatas.push({
+  //     symbol: stock.symbol,
+  //     amount: stock.amount,
+  //     price: stock.price,
+  //     type: stock.type,
+  //     tradeDate: stock.tradeDate
+  //   });
 
-  }
+  // }
 }

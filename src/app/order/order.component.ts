@@ -1,6 +1,7 @@
 import { StockData } from './../stockdata';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -14,10 +15,11 @@ export class OrderComponent implements OnInit, OnChanges {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private http: HttpClient) { }
 
 
-  stockdatas = [];
+  // stockdatas = [];
+  stockdatas;
 
   addStockData(data: StockData): void {
     this.stockdatas.push(data);
@@ -31,7 +33,11 @@ export class OrderComponent implements OnInit, OnChanges {
       amount: 1,
       price: 200
     });
-
+    this.http.get('http://127.0.0.1:3100/api/stock/all')
+    .subscribe(result => {
+      this.stockdatas = result;
+      // console.log(result);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

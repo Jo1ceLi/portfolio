@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PorSPipe implements PipeTransform {
 
-  transform(value: boolean): string {
-    return value ? 'Buy' : 'Sell';
+  transform(value: number): string {
+    return value > 0 ? 'Buy' : 'Sell';
   }
 
 }

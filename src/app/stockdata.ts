@@ -1,5 +1,5 @@
 export interface StockData{
-  stock: string;
+  symbol: string;
   amount: number ;
   price: number;
   type: boolean;
