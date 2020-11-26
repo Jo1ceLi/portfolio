@@ -17,7 +17,7 @@ export class AppComponent {
 
   ];
 
-  //@ViewChild(EditComponent) private editComponent: EditComponent;
+  // @ViewChild(EditComponent) private editComponent: EditComponent;
 
   // onStockAdded(stock: StockData): void{
   //   console.log(stock);
