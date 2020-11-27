@@ -17,8 +17,8 @@ export class AppComponent {
 
   ];
 
-  //@ViewChild(EditComponent) private editComponent: EditComponent;
-
+  // @ViewChild(EditComponent) private editComponent: EditComponent;
+  // testing amend
   // onStockAdded(stock: StockData): void{
   //   console.log(stock);
   //   this.stockdatas.push({
