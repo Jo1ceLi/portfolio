@@ -25,3 +25,23 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## feature to come up 
+
+每日 09:00 排程 同步position history更新至position
+然後爬蟲 position 內symbols 收盤價
+
+[] feature 新增 position_history DB
+[] feature 新增 trade_history DB
+
+
+---------------------------------------------------------------------
+
+前端 Angular 控制 CRUD position data 並由此記錄trade_history
+
+在前端呈現 position 概況 
+
+[]每個股票與現金占比
+
+[]總資產曲線圖
