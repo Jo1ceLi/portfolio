@@ -2,6 +2,7 @@ import { StockData } from './../stockdata';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,17 +16,22 @@ export class OrderComponent implements OnInit, OnChanges {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
 
   // stockdatas = [];
   stockdatas;
 
-  addStockData(data: StockData): void {
-    this.stockdatas.push(data);
-    console.log(this.stockdatas);
-  }
+  // tslint:disable-next-line: typedef
+  async addStockData(data: StockData) {
+    // this.stockdatas.push(data);
+    await this.http.post('http://127.0.0.1:3100/api/stock/new', data)
+    .subscribe();
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/order']);
+  });
 
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({
