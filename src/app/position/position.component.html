@@ -1,25 +1,73 @@
-<p>position works!</p>
-<table class="table table-dark">
+<!-- <p>position works!</p> -->
+<div class="container">
+  <table
+  id="table"
+  data-toggle="table"
+  data-toolbar=".toolbar"
+  data-sortable="true"
+  data-search="true"
+  data-height="460"
+  class="table table-dark">
+
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Symbol</th>
-      <th scope="col">Avg Price</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Market Value</th>
-      <th scope="col">Market Exposure</th>
-
+      <th data-sortable="true" data-field="num">#</th>
+      <th data-sortable="true" data-field="symbol">Symbol</th>
+      <th data-sortable="true" data-field="cost">Cost</th>
+      <th data-sortable="true" data-field="amount">Amount</th>
+      <th data-sortable="true" data-field="marketvalue">Market Value</th>
+      <th data-sortable="true" data-field="marketexposure">Market Exposure</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of positionDatas; let i=index">
       <th scope="row">{{i+1}}</th>
       <td>{{data['symbol']}}</td>
-      <td>{{data['avgPrice']}}</td>
+      <td>{{data['cost']}}</td>
       <td>{{data['amount']}}</td>
-      <td>{{data['avgPrice']*data['amount']}}</td>
-      <td>{{data['avgPrice']*data['amount']/getSum(positionDatas)*100 | number}}%</td>
+      <td>{{data['cost']*data['amount']}}</td>
+      <td>{{data['cost']*data['amount']/getSum(positionDatas)*100 | number}}%</td>
     </tr>
 
   </tbody>
 </table>
+</div>
+
+
+<!--
+<table
+  id="table"
+  data-toggle="table"
+  data-toolbar=".toolbar"
+  data-sortable="true"
+  data-height="460"
+  >
+  <thead>
+    <tr>
+      <th data-sortable="true" data-field="itemID">Item ID</th>
+      <th data-sortable="true" data-field="title">Title</th>
+      <th data-sortable="true" data-field="content">Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Lorem, ipsum dolor.</td>
+      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, nemo.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Lorem ipsum dolor sit.</td>
+      <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+    </tr>
+  </tbody>
+</table>
+<script>
+  $(function() {
+    $('#sortable').change(function () {
+      $('#table').bootstrapTable('refreshOptions', {
+        sortable: $('#sortable').prop('checked')
+      })
+    })
+  })
+</script> -->

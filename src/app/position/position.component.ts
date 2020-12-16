@@ -15,7 +15,7 @@ export class PositionComponent implements OnInit {
     let sum = 0;
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < datas.length ; i++ ){
-      sum += (datas[i].avgPrice * datas[i].amount)
+      sum += (datas[i].cost * datas[i].amount)
     }
     return sum;
   }
