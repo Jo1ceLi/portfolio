@@ -34,4 +34,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
       run: |
         npm install
-        npm run ng -- deploy --base-href=/portfolio/ --name="Jo1ceLi" --email="ms0615122@gmail.com" --no-silent
+      # npm run ng -- deploy --base-href=/portfolio/ --name="Jo1ceLi" --email="ms0615122@gmail.com" --no-silent
