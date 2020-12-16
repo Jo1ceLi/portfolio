@@ -1,3 +1,4 @@
+import { PositionComponent } from './position/position.component';
 import { ErrorComponent } from './error/error.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditComponent } from './edit/edit.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'edit', component: EditComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'sidebar', component: SidebarComponent },
+  { path: 'position', component: PositionComponent},
   { path: '**', component: ErrorComponent  },
 
 

@@ -16,6 +16,7 @@ import { ErrorComponent } from './error/error.component';
 import { PorSPipe } from './por-s.pipe';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PositionComponent } from './position/position.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ErrorComponent,
     PorSPipe,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    PositionComponent
   ],
   imports: [
     BrowserModule,
