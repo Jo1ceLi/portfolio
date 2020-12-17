@@ -3,14 +3,11 @@ steps:
   # Install node packages
   - name: "gcr.io/cloud-builders/npm:latest"
     args: ["install"]
-    dir: "portfolio"
 
   # Build production package
   - name: "gcr.io/basic-dispatch-298807/ng"
     args: ["build", "--prod"]
-    dir: "portfolio"
 
   # Deploy to google cloud app engine
   - name: "gcr.io/cloud-builders/gcloud"
     args: ["app", "deploy", "--version=prod"]
-    dir: "portfolio"
