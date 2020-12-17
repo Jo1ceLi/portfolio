@@ -31,7 +31,7 @@ jobs:
 
     - name: Prepare and deploy
       env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         npm install
         npm run ng -- deploy --base-href=/portfolio/ --no-silent
