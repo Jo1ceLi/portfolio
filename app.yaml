@@ -3,13 +3,11 @@ api_version: 1
 threadsafe: yes
 
 handlers:
-  - url: /(.*\.(gif|png|jpg|css|js)(|\.map))$
-    static_files: dist/portfolio/\1
-    upload: dist/portfolio/(.*)(|\.map)
-
-  - url: /(.*)
+  - url: /
     static_files: dist/portfolio/index.html
     upload: dist/portfolio/index.html
+  - url: /
+    static_dir: dist/portfolio
 
 skip_files:
   - e2e/
