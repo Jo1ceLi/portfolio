@@ -1,5 +1,4 @@
 steps:
-
   # Install node packages
   - name: "gcr.io/cloud-builders/npm:latest"
     args: ["install"]
