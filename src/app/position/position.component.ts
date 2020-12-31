@@ -21,7 +21,7 @@ export class PositionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/api/positions/')
+    this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/positions/')
     .subscribe(res => {
       this.positionDatas = res;
       console.log(this.positionDatas);
