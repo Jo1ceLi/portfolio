@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PositionComponent implements OnInit {
 
-  positionDatas;
+  positionDatas = [];
   constructor(private http: HttpClient) { }
 
   getSum(datas): number {
@@ -23,8 +23,9 @@ export class PositionComponent implements OnInit {
   ngOnInit(): void {
     this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/positions/')
     .subscribe(res => {
-      this.positionDatas = res;
-      console.log(this.positionDatas);
+      this.positionDatas.push(res);
+      console.log(typeof(this.positionDatas));
+
     });
   }
 
