@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-position',
@@ -7,6 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./position.component.css']
 })
 export class PositionComponent implements OnInit {
+
+  @ViewChild(DataTableDirective)dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
 
   positionDatas;
   constructor(private http: HttpClient) { }
@@ -25,7 +33,9 @@ export class PositionComponent implements OnInit {
     .subscribe(res => {
       this.positionDatas = res;
       console.log(this.positionDatas);
+      this.dtTrigger.next();
     });
+
   }
 
 }

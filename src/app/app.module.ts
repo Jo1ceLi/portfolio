@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -37,7 +38,7 @@ import { PositionComponent } from './position/position.component';
     FormsModule,
     RouterModule,
     AppRoutingModule,
-
+    DataTablesModule,
     HttpClientModule
   ],
   providers: [],
