@@ -15,7 +15,7 @@ export class PositionComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-
+  lastClosingPrice;
   positionDatas;
   constructor(private http: HttpClient) { }
 
@@ -28,13 +28,34 @@ export class PositionComponent implements OnInit {
     return sum;
   }
 
+  async getDatas() {
+    await this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/positions/').toPromise().then(
+      res=>{
+        this.positionDatas = res;
+        // this.dtTrigger.next();
+      }
+    );
+    await this.http.get('http://localhost:8080/api/last-closing-price').toPromise().then(
+      res=>{
+        this.lastClosingPrice = res;
+        this.dtTrigger.next();
+      }
+    );
+  }
+
   ngOnInit(): void {
+    // this.getDatas();
     this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/positions/')
     .subscribe(res => {
       this.positionDatas = res;
-      console.log(this.positionDatas);
       this.dtTrigger.next();
     });
+
+    // this.http.get('http://localhost:8080/api/last-closing-price')
+    // .subscribe(res => {
+    //   this.lastClosingPrice = res;
+    //   console.log(this.lastClosingPrice)
+    // })
 
   }
 
