@@ -1,53 +1,26 @@
-<!-- <p>position works!</p> -->
-<div class="container">
-  <table
-    data-toggle="table"
-    data-url="https://basic-dispatch-298807.df.r.appspot.com/api/positions/"
-    data-search="true"
-    data-sortable="true"
-    data-pagination="true"
-    class = "table table-dark"
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover table-striped table-bordered" cellspacing="0"
+  width="100%">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Symbol</th>
+      <th>Cost / share</th>
+      <th>Last closing price</th>
+      <th>Amount</th>
+      <th>Net Liq</th>
+      <th>Percentage</th>
 
-    >
-    <thead>
-      <tr>
-        <th data-sortable="true" data-field="symbol">symbol</th>
-        <th data-sortable="true" data-field="cost">cost</th>
-        <th data-sortable="true" data-field="amount">amount</th>
-      </tr>
-    </thead>
-  </table>
-</div>
-
-
-<!--
-<table
-id="table"
-data-toggle="table"
-data-sortable="true"
-data-search="true"
-data-height="460"
-class="table table-dark">
-
-<thead>
-  <tr>
-    <th data-sortable="true" data-field="num">#</th>
-    <th data-sortable="true" data-field="symbol">Symbol</th>
-    <th data-sortable="true" data-field="cost">Cost</th>
-    <th data-sortable="true" data-field="amount">Amount</th>
-    <th data-sortable="true" data-field="marketvalue">Market Value</th>
-    <th data-sortable="true" data-field="marketexposure">Market Exposure</th>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let data of positionDatas; let i=index">
-    <th scope="row">{{i+1}}</th>
-    <td>{{data['symbol']}}</td>
-    <td>{{data['cost']}}</td>
-    <td>{{data['amount']}}</td>
-    <td>{{data['cost']*data['amount']}}</td>
-    <td>{{data['cost']*data['amount']/getSum(positionDatas)*100 | number}}%</td>
-  </tr>
-
-</tbody>
-</table> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of positionDatas; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{data.symbol}}</td>
+      <td>{{data.cost}}</td>
+      <td>{{data.closingprice}}</td>
+      <td>{{data.amount}}</td>
+      <td>{{data.amount * data.closingprice | number}}</td>
+      <td>{{( data.amount * data.closingprice / positionSum * 100) | number}} %</td>
+    </tr>
+  </tbody>
+</table>
