@@ -1,14 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-position',
   templateUrl: './position.component.html',
   styleUrls: ['./position.component.css']
 })
-export class PositionComponent implements OnInit {
+export class PositionComponent implements OnInit,AfterViewInit {
 
-  positionDatas;
+
+  positionDatas = {};
+  dataSource = new MatTableDataSource();
+
   constructor(private http: HttpClient) { }
 
   getSum(datas): number {
@@ -26,6 +31,9 @@ export class PositionComponent implements OnInit {
       this.positionDatas = res;
       console.log(this.positionDatas);
     });
+  }
+  ngAfterViewInit(): void {
+
   }
 
 }
