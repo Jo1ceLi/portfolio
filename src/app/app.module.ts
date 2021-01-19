@@ -1,10 +1,10 @@
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DataTablesModule } from 'angular-datatables';
 
 
 import { AppComponent } from './app.component';
@@ -37,7 +37,7 @@ import { PositionComponent } from './position/position.component';
     FormsModule,
     RouterModule,
     AppRoutingModule,
-
+    DataTablesModule,
     HttpClientModule
   ],
   providers: [],

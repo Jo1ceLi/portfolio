@@ -1,73 +1,32 @@
-<!-- <p>position works!</p> -->
-<div class="container">
-  <table
-  id="table"
-  data-toggle="table"
-  data-toolbar=".toolbar"
-  data-sortable="true"
-  data-search="true"
-  data-height="460"
-  class="table table-dark">
+<div class="container-fluid">
+  <div class="table p-3">
 
-  <thead>
-    <tr>
-      <th data-sortable="true" data-field="num">#</th>
-      <th data-sortable="true" data-field="symbol">Symbol</th>
-      <th data-sortable="true" data-field="cost">Cost</th>
-      <th data-sortable="true" data-field="amount">Amount</th>
-      <th data-sortable="true" data-field="marketvalue">Market Value</th>
-      <th data-sortable="true" data-field="marketexposure">Market Exposure</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data of positionDatas; let i=index">
-      <th scope="row">{{i+1}}</th>
-      <td>{{data['symbol']}}</td>
-      <td>{{data['cost']}}</td>
-      <td>{{data['amount']}}</td>
-      <td>{{data['cost']*data['amount']}}</td>
-      <td>{{data['cost']*data['amount']/getSum(positionDatas)*100 | number}}%</td>
-    </tr>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover table-striped table-bordered" cellspacing="0"
+      width="100%">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Symbol</th>
+          <th>Cost / share</th>
+          <th>Last closing price</th>
+          <th>Amount</th>
+          <th>Net Liq</th>
+          <th>Percentage</th>
 
-  </tbody>
-</table>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of positionDatas; let i=index">
+          <td>{{i+1}}</td>
+          <td>{{data.symbol}}</td>
+          <td>{{data.cost}}</td>
+          <td>{{data.closingprice}}</td>
+          <td>{{data.amount}}</td>
+          <td>{{data.amount * data.closingprice | number}}</td>
+          <td>{{( data.amount * data.closingprice / positionSum * 100) | number}} %</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-
-<!--
-<table
-  id="table"
-  data-toggle="table"
-  data-toolbar=".toolbar"
-  data-sortable="true"
-  data-height="460"
-  >
-  <thead>
-    <tr>
-      <th data-sortable="true" data-field="itemID">Item ID</th>
-      <th data-sortable="true" data-field="title">Title</th>
-      <th data-sortable="true" data-field="content">Content</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Lorem, ipsum dolor.</td>
-      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, nemo.</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Lorem ipsum dolor sit.</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
-    </tr>
-  </tbody>
-</table>
-<script>
-  $(function() {
-    $('#sortable').change(function () {
-      $('#table').bootstrapTable('refreshOptions', {
-        sortable: $('#sortable').prop('checked')
-      })
-    })
-  })
-</script> -->
