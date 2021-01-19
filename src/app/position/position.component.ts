@@ -32,19 +32,16 @@ export class PositionComponent implements OnInit {
     }
     return sum;
   }
-
-  ngOnInit(): void {
-    const today = new Date();
-    today.setDate(today.getDate() - 1);
-    const todayString = (today.toISOString().slice(0, 10));
-    console.log(todayString);
-
-    this.http.get(`https://basic-dispatch-298807.df.r.appspot.com/api/closingprice/2021-01-15`)
-    .subscribe(res => {
+  // tslint:disable-next-line: typedef
+  private async fetchDataFromHTTP() {
+    await this.http.get(`https://basic-dispatch-298807.df.r.appspot.com/api/closingprice/2021-01-15`)
+    .toPromise()
+    .then(res => {
       this.lastClosingPriceDatas = res;
     });
-    this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/positions/')
-    .subscribe(res => {
+    await this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/positions/')
+    .toPromise()
+    .then(res => {
       this.positionDatas = res;
       this.positionDatas.forEach(element => {
         this.lastClosingPriceDatas.map(el => {
@@ -56,8 +53,16 @@ export class PositionComponent implements OnInit {
       this.positionDatas.push({symbol: 'CASH', closingprice: 14778, amount: 1});
       this.positionSum = this.getSum(this.positionDatas);
       this.dtTrigger.next();
-
     });
+  }
+
+  ngOnInit(): void {
+    const today = new Date();
+    today.setDate(today.getDate() - 1);
+    const todayString = (today.toISOString().slice(0, 10));
+    console.log(todayString);
+
+    this.fetchDataFromHTTP();
   }
 
 }
