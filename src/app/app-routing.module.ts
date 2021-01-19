@@ -1,3 +1,4 @@
+import { LayoutComponent } from './layout/layout.component';
 import { PositionComponent } from './position/position.component';
 import { ErrorComponent } from './error/error.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -9,13 +10,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 const routes: Routes = [
-  { path: '', component: OrderComponent },
-  { path: 'order', component: OrderComponent },
-  { path: 'edit', component: EditComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'sidebar', component: SidebarComponent },
-  { path: 'position', component: PositionComponent},
-  { path: '**', component: ErrorComponent  },
+  { path: '', component: LayoutComponent, children: [
+    { path: 'order', component: OrderComponent},
+    { path: 'edit', component: EditComponent },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'sidebar', component: SidebarComponent },
+    { path: 'position', component: PositionComponent},
+    { path: '**', component: ErrorComponent  },
+  ] },
 
 
 ];

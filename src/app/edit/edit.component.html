@@ -1,39 +1,45 @@
-<div class="edit bg-info">
-  <div>
+<div class="edit bg">
+  <div class="container-fluid">
     <form [formGroup]="stockdata" (ngSubmit)="onSubmit()">
+      <div class="container-fluid row">
+        <div class="col-md p-0">
+          <label>
+            Stock:
+            <input type="text" class="form-control" [class.is-invalid]="stockdata.get('symbol').invalid"
+              formControlName="symbol">
+          </label>
+        </div>
+        <div class="col-md p-0">
+          <label>
+            Price:
+            <input type="text" class="form-control" [class.is-invalid]="stockdata.get('price').invalid"
+              formControlName="price">
+          </label>
+        </div>
+        <div class="col-md p-0">
+          <label>
+            Amount:
+            <input type="text" class="form-control" [class.is-invalid]="stockdata.get('amount').invalid"
+              formControlName="amount">
+          </label>
+        </div>
+      </div>
+      <div class="btn row">
+        <select name='PORS' formControlName='type' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          class="align-baseline btn btn-secondary selector p-0">
+          <option class="dropdown-item" [ngValue]='true'>Buy</option>
+          <option class="dropdown-item" [ngValue]='false'>Sell</option>
+        </select>
 
-      <label>
-        Stock:
-        <input type="text" class="form-control" [class.is-invalid]="stockdata.get('symbol').invalid"
-          formControlName="symbol">
-      </label>
-
-      <label>
-        Price:
-        <input type="text" class="form-control" [class.is-invalid]="stockdata.get('price').invalid"
-          formControlName="price">
-      </label>
-
-      <label>
-        Amount:
-        <input type="text" class="form-control" [class.is-invalid]="stockdata.get('amount').invalid"
-          formControlName="amount">
-      </label>
-
-      <select name='PORS' formControlName='type' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-        class="btn btn-secondary">
-        <option class="dropdown-item" [ngValue]='true'>Buy</option>
-        <option class="dropdown-item" [ngValue]='false'>Sell</option>
-      </select>
-
-      <input [disabled]='stockdata.invalid' type="submit" value="Submit">
+        <button class="align-top ml-2  submit-btn btn btn-primary p-0" [disabled]='stockdata.invalid' type="submit" value="Submit">Submit</button>
+      </div>
 
     </form>
   </div>
-  <div>
+  <!-- <div>
     <pre>{{stockdata.value | json}}</pre>
     <pre>{{stockdata.get('symbol').errors | json }}</pre>
     <pre>{{stockdd | json}}</pre>
-  </div>
+  </div> -->
 
 </div>
