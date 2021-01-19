@@ -37,7 +37,9 @@ export class PositionComponent implements OnInit {
     const today = new Date();
     today.setDate(today.getDate() - 1);
     const todayString = (today.toISOString().slice(0, 10));
-    this.http.get(`http://localhost:8080/api/closingprice/2021-01-15`)
+    console.log(todayString);
+
+    this.http.get(`https://basic-dispatch-298807.df.r.appspot.com/api/closingprice/2021-01-15`)
     .subscribe(res => {
       this.lastClosingPriceDatas = res;
     });
