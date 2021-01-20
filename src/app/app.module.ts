@@ -18,6 +18,7 @@ import { PorSPipe } from './por-s.pipe';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PositionComponent } from './position/position.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { PositionComponent } from './position/position.component';
     RouterModule,
     AppRoutingModule,
     DataTablesModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
