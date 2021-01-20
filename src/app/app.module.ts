@@ -1,3 +1,4 @@
+import { LayoutComponent } from './layout/layout.component';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -29,7 +30,8 @@ import { PositionComponent } from './position/position.component';
     PorSPipe,
     SidebarComponent,
     NavbarComponent,
-    PositionComponent
+    PositionComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

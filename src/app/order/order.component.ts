@@ -21,11 +21,25 @@ export class OrderComponent implements OnInit, OnChanges {
 
   // stockdatas = [];
   stockdatas;
-
+  tradeData = {
+    symbol: '',
+    price: 0,
+    amount: 0,
+    date: Date()
+  };
   // tslint:disable-next-line: typedef
   async addStockData(data: StockData) {
     // this.stockdatas.push(data);
-    await this.http.post('http://127.0.0.1:3100/api/stock/new', data)
+    this.tradeData.symbol = data.symbol;
+    this.tradeData.price = data.price;
+    if (data.type === false){
+      this.tradeData.amount = data.amount * -1;
+    }else{
+      this.tradeData.amount = data.amount;
+    }
+    this.tradeData.date = data.tradeDate;
+    console.log(this.tradeData);
+    await this.http.post('https://basic-dispatch-298807.df.r.appspot.com/api/trade', this.tradeData)
     .subscribe();
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/order']);
@@ -39,7 +53,7 @@ export class OrderComponent implements OnInit, OnChanges {
       amount: 1,
       price: 200
     });
-    this.http.get('http://127.0.0.1:3100/api/stock/all')
+    this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/trade')
     .subscribe(result => {
       this.stockdatas = result;
       // console.log(result);

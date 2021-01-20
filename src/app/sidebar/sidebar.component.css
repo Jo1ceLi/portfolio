@@ -1,7 +1,6 @@
-
-.sidebar{
-
-  margin: 0;
-  max-width: 300px;
-  background-color: aquamarine;
+.bg-gradient-primary {
+    background-color: grey;
+    background-size: cover;
+    width: 200px;
+    height: 100vh;
 }
