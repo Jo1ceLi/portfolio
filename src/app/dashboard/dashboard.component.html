@@ -1,30 +1,41 @@
-<div class="container-fluid flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                ></canvas>
+<div class="container-fluid canvas">
+  <div class="row cards">
+    <div class="border col-md-6 col-lg-3">
+      1
+    </div>
+    <div class="border col-md-6 col-lg-3">
+      2
+    </div>
+    <div class="border col-md-6 col-lg-3">
+      3
+    </div>
+    <div class="border col-md-6 col-lg-3">
+      4
     </div>
   </div>
-  <div class="flex-item">
-    <table class="table table-responsive table-condensed">
-      <tr>
-        <th *ngFor="let label of lineChartLabels">{{label}}</th>
-      </tr>
-      <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
-        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-      </tr>
-    </table>
-    <!-- <button mat-button mat-raised-button color="primary" (click)="randomize()">Randomize</button>
-    <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
-    <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
-    <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
-    <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button> -->
+  <div class="row p-1">
+    <div class="border border-primary chart basechart col-md-7 flex-fill p-0">
+      <canvas baseChart
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              [plugins]="lineChartPlugins"
+      ></canvas>
+    </div>
+    <div class="border border-primary chart piechart col-md-5 flex-fill p-0">
+      <canvas baseChart
+      [data]="pieChartData"
+      [labels]="pieChartLabels"
+      [chartType]="pieChartType"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins"
+      [colors]="pieChartColors"
+      [legend]="pieChartLegend">
+    </canvas>
+    </div>
   </div>
 </div>
+

@@ -14,7 +14,6 @@ const routes: Routes = [
     { path: 'order', component: OrderComponent},
     { path: 'edit', component: EditComponent },
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'sidebar', component: SidebarComponent },
     { path: 'position', component: PositionComponent},
     { path: '**', component: ErrorComponent  },
   ] },

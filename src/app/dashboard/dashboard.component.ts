@@ -11,49 +11,29 @@ import * as pluginAnnotations from 'chartjs-plugin-annotation';
 })
 export class DashboardComponent implements OnInit {
 
-  public lineChartData: ChartDataSets[] = [
-    {data: [30000, 31000, 33300, 50000], label: 'Stock portfolio'}
+
+  @Input() tradedata;
+  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
+  public pieChartData: number[] = [300, 500, 100];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+  public pieChartColors = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+    },
   ];
-  public lineChartLabels: Label[] = ['2020-09', '2020-10', '2020-11', '2020-12'];
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  public pieChartOptions = {
+    responsive: true
+  };
+  public lineChartData: ChartDataSets[] = [
+    {data: [27120, 27757, 28883, 30581, 31106, 32450, 32975, 35180], label: 'Stock portfolio'}
+  ];
+
+  public lineChartLabels: Label[] = ['2020-10-22', '2020-11-04', '2020-11-17', '2020-11-30', '2020-12-11', '2020-12-24', '2021-01-06', '2021-01-19'];
+  public lineChartOptions = {
     responsive: true,
-    scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'left',
-        },
-        {
-          id: 'y-axis-1',
-          position: 'right',
-          gridLines: {
-            color: 'rgba(255,0,0,0.3)',
-          },
-          ticks: {
-            fontColor: 'red',
-          }
-        }
-      ]
-    },
-    annotation: {
-      annotations: [
-        {
-          type: 'line',
-          mode: 'vertical',
-          scaleID: 'x-axis-0',
-          value: 'March',
-          borderColor: 'orange',
-          borderWidth: 2,
-          label: {
-            enabled: true,
-            fontColor: 'orange',
-            content: 'LineAnno'
-          }
-        },
-      ],
-    },
+    maintainAspectRatio : false
   };
   public lineChartColors: Color[] = [
     { // grey
@@ -85,7 +65,6 @@ export class DashboardComponent implements OnInit {
   public lineChartType: ChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
 
-  @Input() tradedata;
 
   constructor() { }
 
