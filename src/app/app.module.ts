@@ -19,6 +19,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PositionComponent } from './position/position.component';
 import { ChartsModule } from 'ng2-charts';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ChartsModule } from 'ng2-charts';
     SidebarComponent,
     NavbarComponent,
     PositionComponent,
-    LayoutComponent
+    LayoutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
