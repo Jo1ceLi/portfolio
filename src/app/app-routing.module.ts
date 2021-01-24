@@ -1,3 +1,5 @@
+import { AuthGuard } from './auth.guard';
+import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { PositionComponent } from './position/position.component';
 import { ErrorComponent } from './error/error.component';
@@ -10,15 +12,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent},
   { path: '', component: LayoutComponent, children: [
     { path: 'order', component: OrderComponent},
     { path: 'edit', component: EditComponent },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'position', component: PositionComponent},
+    { path: 'dashboard', component: DashboardComponent},
+    { path: 'position', component: PositionComponent, canActivate: [AuthGuard]},
     { path: '**', component: ErrorComponent  },
   ] },
-
-
 ];
 
 @NgModule({
