@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
         // return true;
         const JWT = localStorage.getItem('access_token');
         // console.log('got access', JWT);
-        return this.http.post('http://localhost:8080/verify', {access_token: JWT})
+        return this.http.post('https://basic-dispatch-298807.df.r.appspot.com/verify', {access_token: JWT})
         .pipe(map((res) => {
           if (res){
             console.log(res);
