@@ -1,7 +1,7 @@
 import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface JWT {
   access_token: string;
@@ -22,7 +22,7 @@ interface loginInfo {
 export class LoginComponent implements OnInit {
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
   loginForm = this.fb.group({
     email: [''],
     password: ['']
@@ -41,12 +41,11 @@ export class LoginComponent implements OnInit {
     .subscribe(res => {
       console.log('res', res);
       localStorage.setItem('access_token', res.access_token);
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get('returnUrl'));
     }, (err) => {
       alert('Wrong email or password');
       console.log('err', err);
     });
-
   }
   ngOnInit(): void {
 
