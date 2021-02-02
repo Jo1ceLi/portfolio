@@ -17,8 +17,8 @@ export class EditComponent implements OnInit {
   stockdd: StockData;
   stockdata = this.fb.group({
     symbol: ['', Validators.required],
-    price: [, [Validators.required]],
-    amount: [, [Validators.required]],
+    price: [, [Validators.required, Validators.pattern('^[0-9]*$')]],
+    amount: [, [Validators.required, Validators.pattern('^[0-9]*$')]],
     type: true,
     tradeDate: Date().toString().substring(4, 15)
   });
