@@ -10,15 +10,27 @@ handlers:
 #     static_dir: dist/portfolio
 
   - url: /
-    static_files: dist/portfolio/index.html
-    upload: dist/portfolio/index.html
     secure: always
-
-  # Catch-all rule, responsible from handling Angular application routes (deeplinks).
+    static_files: dist/portfolio/index.html
+    upload: dist/.*
+    
+  - url: /(.*\.js)
+    secure: always
+    redirect_http_response_code: 301
+    static_files: dist/\1
+    upload: dist/.*\.js
+    
+  - url: /(.*\.css)
+    secure: always
+    redirect_http_response_code: 301
+    static_files: dist/\1
+    mime_type: text/css
+    upload: dist/.*\.css
+    
   - url: /.*
-    static_files: dist/portfolio/index.html
-    upload: dist/portfolio/index.html
     secure: always
+    static_files: dist/portfolio/index.html
+    upload: dist/.*
 
 
 skip_files:
