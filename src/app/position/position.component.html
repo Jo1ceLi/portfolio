@@ -20,10 +20,10 @@
           <td>{{i+1}}</td>
           <td>{{data.symbol}}</td>
           <td>{{data.cost}}</td>
-          <td>{{data.closingprice | number}}</td>
+          <td>{{data.closingprice}}</td>
           <td>{{data.amount}}</td>
           <td>{{data.amount * data.closingprice | number}}</td>
-          <td>{{ ( data.amount * data.closingprice / positionSum ) * 100. | number }} %</td>
+          <td>{{( data.amount * data.closingprice / positionSum * 100) | number}} %</td>
         </tr>
       </tbody>
     </table>
