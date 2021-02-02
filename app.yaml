@@ -3,11 +3,23 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+#   - url: /
+#     static_files: dist/portfolio/index.html
+#     upload: dist/portfolio/index.html
+#   - url: /
+#     static_dir: dist/portfolio
+
   - url: /
     static_files: dist/portfolio/index.html
     upload: dist/portfolio/index.html
-  - url: /
-    static_dir: dist/portfolio
+    secure: always
+
+  # Catch-all rule, responsible from handling Angular application routes (deeplinks).
+  - url: /.*
+    static_files: dist/portfolio/index.html
+    upload: dist/portfolio/index.html
+    secure: always
+
 
 skip_files:
   - e2e/
