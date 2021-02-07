@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <h3>Insert trade data</h3>
     <app-edit (newStockDataEvent)="addStockData($event)"></app-edit>
-    <table class="table table-dark m-0">
+    <!-- <table class="table table-dark m-0">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -33,5 +33,30 @@
           <td>{{data.date}}</td>
         </tr>
       </tbody>
+    </table> -->
+  <div class="table p-3">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover table-striped table-bordered" cellspacing="0"
+    width="100%">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Symbol</th>
+        <th scope="col">Price</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Type</th>
+        <th scope="col">Trade Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of stockdatas; let i=index">
+        <th scope="row">{{i}}</th>
+        <td>{{data.symbol}}</td>
+        <td>{{data.price}}</td>
+        <td>{{data.amount}}</td>
+        <td [ngStyle]="{'color': data.amount > 0  ? 'green':'red'}">{{data.amount | porS}}</td>
+        <td>{{data.date}}</td>
+      </tr>
+    </tbody>
     </table>
+  </div>
 </div>

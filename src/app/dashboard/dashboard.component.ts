@@ -1,7 +1,13 @@
+import { data } from 'jquery';
+import { Aspect6 } from 'chartjs-plugin-colorschemes/src/colorschemes/colorschemes.office';
 import { Component, Input, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType, plugins, PluginServiceGlobalRegistration } from 'chart.js';
-import { Color, BaseChartDirective, Label, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
+import { ChartDataSets, ChartType} from 'chart.js';
+import { Color, Label } from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import 'chartjs-plugin-labels';
+import * as name from 'chartjs-plugin-colorschemes';
+import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 
 interface rawData{
@@ -17,30 +23,30 @@ export class DashboardComponent implements OnInit {
 
 
   @Input() tradedata;
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: number[] = [300, 500, 100];
-  // public pieChartLabels: Label[] = [];
-  // public pieChartData: number[] = [];
+
+  public pieChartLabels: Label[] = [];
+  public pieChartData: number[] = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
-  public pieChartPlugins = {
-  };
-  public pieChartColors = [
-    {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
-    },
-  ];
+  // public pieChartPlugins = [pluginDataLabels];
   public pieChartOptions = {
     responsive: true,
     legend: {
       position: 'right',
     },
-
-      labels: {
-          render: 'percentage',
-          fontColor: ['green', 'white', 'red'],
-          precision: 2
-      }
+    labels: {
+        render: 'percentage',
+        arc: true,
+        precision: 2
+    }
+    // ,
+    // options: {
+    //   plugins: {
+    //     colorschemes: {
+    //       scheme: 'brewer.Paired12'
+    //     }
+    //   }
+    // }
   };
 
 
@@ -88,24 +94,36 @@ export class DashboardComponent implements OnInit {
   closing_price;
   constructor(private http: HttpClient){}
 
+  private getLastBusinessDay(): Date {
+    const workday = moment();
+    const day = workday.day();
+    let diff = 1;  // returns yesterday
+    if (day === 0 || day === 1){  // is Sunday or Monday
+      diff = day + 2;  // returns Friday
+    }
+    return workday.subtract(diff, 'days').toDate();
+  }
   getPositionSumData(){
+    const lastBusinessDate = this.getLastBusinessDay().toJSON().slice(0, 10);
     const res = new Array<rawData>();
     const subscription = this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/positions')
-    .subscribe(positions => {
-
-      this.pieChartData.push(12007);
-      this.pieChartLabels.push('CASH');
+    .subscribe(async positions => {
+      const cashDatas = await this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/cash/')
+      .toPromise();
+      this.pieChartData.push(cashDatas[0].amount);
+      this.pieChartLabels.push('$$CASH');
+      // console.log(cashDatas);
       this.position_data = positions;
-      this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/closingprice/2021-01-25')
+      this.http.get(`https://basic-dispatch-298807.df.r.appspot.com/api/closingprice/${lastBusinessDate}`)
       .subscribe(closingprice => {
         this.closing_price = closingprice;
-        console.log(this.position_data, this.closing_price);
+        // console.log(this.position_data, this.closing_price);
         this.closing_price.map(eleClosingPrice => {
           this.position_data.forEach(elePosition => {
             if (elePosition.symbol === eleClosingPrice.symbol){
               this.pieChartData.push(eleClosingPrice.closingprice * elePosition.amount);
               this.pieChartLabels.push(elePosition.symbol);
-              console.log(elePosition.symbol, eleClosingPrice.closingprice * elePosition.amount);
+              // console.log(elePosition.symbol, eleClosingPrice.closingprice * elePosition.amount);
             }
           });
         });
@@ -114,6 +132,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getPositionSumData();
+    this.getPositionSumData();
   }
 }

@@ -1,8 +1,10 @@
 import { StockData } from './../stockdata';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DataTableDirective } from 'angular-datatables';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -10,8 +12,11 @@ import { Router } from '@angular/router';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit, OnChanges {
-
+export class OrderComponent implements OnInit {
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   @Input() stockdata: StockData;
 
   form: FormGroup;
@@ -39,7 +44,8 @@ export class OrderComponent implements OnInit, OnChanges {
     }
     this.tradeData.date = data.tradeDate;
     console.log(this.tradeData);
-    await this.http.post('https://basic-dispatch-298807.df.r.appspot.com/api/trade', this.tradeData)
+    await this.http.post('https://basic-dispatch-298807.df.r.appspot.com/api/trade'
+    , this.tradeData)
     .subscribe();
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/order']);
@@ -47,21 +53,26 @@ export class OrderComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.form = this.fb.group({
       stock: 'AAPL',
       amount: 1,
       price: 200
     });
-    this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/trade')
-    .subscribe(result => {
-      this.stockdatas = result;
-      // console.log(result);
+    await this.http.get('https://basic-dispatch-298807.df.r.appspot.com/api/trade')
+    .toPromise()
+    .then(res => {
+      this.stockdatas = res;
     });
+    this.dtTrigger.next();
+    // .subscribe(result => {
+    //   this.stockdatas = result;
+    //   // console.log(result);
+    // });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.stockdatas);
-  }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.log(this.stockdatas);
+  // }
 
 }
