@@ -1,14 +1,13 @@
-import { data } from 'jquery';
-import { Aspect6 } from 'chartjs-plugin-colorschemes/src/colorschemes/colorschemes.office';
-import { Component, Input, OnInit } from '@angular/core';
+import { TdApiService } from './../td-api/td-api.service';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartType} from 'chart.js';
 import { Color, Label } from 'ng2-charts';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import 'chartjs-plugin-labels';
-import * as name from 'chartjs-plugin-colorschemes';
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 
 interface rawData{
   symbol: string;
@@ -20,7 +19,10 @@ interface rawData{
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
   @Input() tradedata;
 
@@ -92,7 +94,8 @@ export class DashboardComponent implements OnInit {
 
   position_data;
   closing_price;
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient,
+              private tdService: TdApiService){}
 
   private getLastBusinessDay(): Date {
     const workday = moment();
@@ -132,6 +135,27 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPositionSumData();
+    // this.getPositionSumData();
+    this.getAccount();
+    // const accessInfo = this.tdService.getToken();
+    // accessInfo.then(res => console.log(res.access_token));
+    // const accessToken = this.tdService.getAccessTokenByRefreshToken();
+    // console.log(accessToken);
+  }
+
+  async getRefreshToken() {
+    const refreshToken = await this.tdService.getToken();
+    console.log(refreshToken);
+  }
+
+  async getAccessToken() {
+    const accessToken = await this.tdService.getAccessTokenByRefreshToken();
+    console.log(accessToken);
+  }
+
+  async getAccount() {
+    const access_token = localStorage.getItem('token');
+    const account = await this.tdService.getAccount('635030026', access_token, 'positions');
+    this.position_data = account[0].securitiesAccount.positions;
   }
 }

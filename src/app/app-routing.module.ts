@@ -18,6 +18,7 @@ const routes: Routes = [
     { path: 'edit', component: EditComponent },
     { path: 'dashboard', component: DashboardComponent},
     { path: 'position', component: PositionComponent, canActivate: [AuthGuard]},
+    { path: '?code', component: DashboardComponent },
     { path: '**', component: ErrorComponent  },
   ] },
 ];
