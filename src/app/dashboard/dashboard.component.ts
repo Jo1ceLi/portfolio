@@ -1,4 +1,4 @@
-import { TdApiService } from './../td-api/td-api.service';
+import { TdApiService } from '../td-api/td-api.service';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartType} from 'chart.js';
 import { Color, Label } from 'ng2-charts';

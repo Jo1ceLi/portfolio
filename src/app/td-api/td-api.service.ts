@@ -53,7 +53,7 @@ export class TdApiService {
         access_type: 'offline',
         code: this.encodedCode,
         client_id: 'VUFPF8RYVMMTP1QV0J1VWDUGCF2VTJQ6',
-        redirect_uri: 'http://localhost:4200'
+        redirect_uri: 'https://portfolio-298915.df.r.appspot.com/'
     };
     body = Object.keys(body).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(body[key])).join('&');
     const res = await fetch(apiUrl, {
