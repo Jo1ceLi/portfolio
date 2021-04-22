@@ -30,25 +30,54 @@
   </div>
   <div class="row p-1">
     <div class="border border-primary chart basechart col-md-7 flex-fill p-0">
-      <canvas baseChart
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
-              [plugins]="lineChartPlugins"
-      ></canvas>
+      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"></canvas>
     </div>
     <div class="border border-primary chart piechart col-md-5 flex-fill p-0">
-      <canvas baseChart
-      [data]="pieChartData"
-      [labels]="pieChartLabels"
-      [chartType]="pieChartType"
-      [options]="pieChartOptions"
-      [legend]="pieChartLegend">
-    </canvas>
+      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [legend]="pieChartLegend">
+      </canvas>
     </div>
+    <div class="btn-group">
+      <div class="btn btn-primary" (click)="getAccessToken()">
+        GetAccessToken
+      </div>
+      <div class="btn btn-info" (click)="getRefreshToken()">
+        GetRefreshToken
+      </div>
+      <div class="btn btn-success" (click)="getAccount()">
+        GetAccount
+      </div>
+    </div>
+    <div class="table">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover table-striped table-bordered" cellspacing="0"
+      width="100%">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Symbol</th>
+          <th>Cost / share</th>
+          <th>Last closing price</th>
+          <th>Amount</th>
+          <th>Net Liq</th>
+          <!-- <th>Percentage</th> -->
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of position_data; let i=index">
+          <td>{{i+1}}</td>
+          <td>{{data.instrument.symbol}}</td>
+          <td>{{data.averagePrice}}</td>
+          <td>{{data.marketValue / data.longQuantity | number}}</td>
+          <td>{{data.longQuantity}}</td>
+          <td>{{data.marketValue | number}}</td>
+          <!-- <td>{{ ( data.amount * data.closingprice / positionSum ) * 100. | number }} %</td> -->
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
   </div>
 </div>
-
